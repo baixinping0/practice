@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>cvte-系统登录页</title>
+	<link rel="stylesheet" th:href="@{/css/index.css}">
+	<script th:src="@{/js/jquery-1.8.3.js}"></script>
+	<script type="text/javascript">
+        //部门搜索
+        function depSearch(){
+            var dept_name = window.document.getElementById("inputDepSearch").value;
+            window.document.getElementById("menuContent").src = "depList.action?dept_name=" + dept_name;
+        }
+        // 文章模块
+        function clickButton_article(){
+            window.document.getElementById("frame-contect").src = "articleList.action";
+        }
+        //缓存
+        function clickButton_cache(){
+            window.document.getElementById("frame-contect").src = "proModelList.action";
+        }
+        //物流订单模块
+        function clickButton_logistics(){
+            window.document.getElementById("frame-contect").src = "logisticsList.action";
+        }
+	</script>
+</head>
+
+<body>
+	<div class="container">
+		<div class="head">
+			<div class="head-left">
+				<span style="font-weight:bold; color:#1f4906">欢迎您-</span><br />
+				<span style="color:#4a940d">${session['loginEmp'].name}</span>
+			</div>
+			<div class="head-right">
+				<table width="100%" border="0" cellpadding="0" cellspacing="0">
+					<tr>
+						<td width="32%">
+							<a href="emp_toChangePwd.action" target="main">
+								<img src="images/head-l.gif"	border="0" />
+							</a>
+						</td>
+						<td width="26%">
+							<a href="logout.action">
+								<img src="images/head-m.gif"	border="0" />
+							</a>
+						</td>
+						<td width="7%">&nbsp;</td>
+						<td width="35%"><a href="#"><img src="images/head-r.gif"
+								border="0" />
+						</a>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<!--"head"end-->
+
+		<div class="content">
+			<div  class="left">
+				<div style="margin-left:2px;">
+					<img src="images/left-top.gif" width="162" height="25" />
+				</div>
+				<div  class="left-bottom">
+				<table width="100%" border="0" cellpadding="0" cellspacing="0">
+					<tr bgcolor="#FFFFFF">
+						<td>&nbsp;</td>
+					</tr>
+					<tr bgcolor="#FFFFFF">
+							<td><input id="inputDepSearch" type="text" /></td>
+					</tr>
+					<tr bgcolor="#FFFFFF">
+						<td>&nbsp;</td>
+					</tr>
+					<tr bgcolor="#FFFFFF">
+						<td><input id="buttonDepSearch" onclick="depSearch()" value="搜索" type="button"/></td>
+					</tr>
+					</table>
+					<iframe  id="menuContent" src="depList.action"
+							 style="width:160px;float:right;height:600px" scrolling="no"
+							 name="main" frameborder="0"></iframe>
+
+				</div>
+				<!--"left-bottom"end-->
+	
+				<!--"left-bottom"end-->
+			</div>
+			<!--"left"end-->
+			<table>
+				<tr>
+					<td><input id="button_article" onclick="clickButton_article()" type="button" value="文章管理"/></td>
+					<td><input id="button_cache" onclick="clickButton_cache()" type="button" value="缓存管理"/></td>
+					<td><input id="button_logistics" onclick="clickButton_logistics()" type="button" value="物流订单"/></td>
+					<td><input id="button_emp" onclick="clickButton_emp()" type="button" value="员工管理"/></td>
+				</tr>
+			</table>
+			<div>
+			<iframe class="frame-contect" id="frame-contect" src="articleList.action"
+				style="width:848px;float:right;height:530px" scrolling="no"
+				name="main" frameborder="0">
+				</iframe>
+			</div>
+			
+				
+			<!--"content-right"end--> 	
+		</div>
+		<!--"content"end-->
+		<div class="footer">
+			<div style="margin-top:5px;">
+				<table width="98%" border="0" cellpadding="0" cellspacing="0"
+					align="center">
+					<tr>
+						<td width="82%"><img src="images/icon_1.gif" />&nbsp; <a
+							class="lanyo" href="www.itcast.cn">cvte</a></td>
+						<td width="18%" valign="middle"><img src="images/icon_2.gif" />&nbsp;
+							<a class="lanyo" href="#">如有疑问请与技术人员联系</a></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<!--"footer"end-->
+	</div>
+	<!--"container"end-->
+	<%@include file="/WEB-INF/jsps/tools/mask.jsp"%>
+</body>
+</html>

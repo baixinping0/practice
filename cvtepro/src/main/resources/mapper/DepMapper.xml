@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.baixinping.cvtepro.dao.DepDao">
+	<resultMap type="com.baixinping.cvtepro.entity.DepModel" id="deptRM">
+		<id property="id" column="dept_code"/>
+	</resultMap>
+
+	<select id="get" parameterType="string" resultMap="deptRM">
+		select * from CVTE_DEPT
+		where dept_code=#{id}
+	</select>
+	
+	<select id="listByCharger" parameterType="string" resultMap="deptRM">
+		select * from CVTE_DEPT
+		where charger1=#{user_code} or charger2=#{user_code}
+	</select>
+	
+	<select id="listChildByParent" parameterType="string" resultMap="deptRM">
+		select * from CVTE_DEPT
+		where parent_code=#{dept_code}
+	</select>
+	
+	<select id="listAllChildByParent" parameterType="string" resultMap="deptRM">
+		select * from CVTE_DEPT
+		where dept_code like CONCAT(#{dept_code},'%')
+	</select>
+	
+	<select id="listByDepq" parameterType="string" resultMap="deptRM">
+		select * from CVTE_DEPT
+		where dept_code = id 
+		and dept_name like CONCAT('%',#{dept_name},'%')
+	</select>
+	
+	<select id="listAuthDep" parameterType="string" resultMap="deptRM">
+		select * from cvte_dept 
+		where dept_code 
+		in (
+		select dept_code from cvte_user_dept 
+		where user_code = #{user_code}
+		)
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+

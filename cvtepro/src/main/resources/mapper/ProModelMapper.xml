@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.baixinping.cvtepro.dao.ProModelDao">
+	<resultMap type="com.baixinping.cvtepro.entity.ProModel" id="promodelRM">
+		<id property="id" column="model_code"/>
+	</resultMap>
+	<insert id="insert" parameterType="com.baixinping.cvtepro.entity.ProModel">
+		insert into cvte_promodel
+		(model_code,model_name,cache_status)
+		values
+		(
+			#{id,jdbcType=VARCHAR},
+			#{model_name ,jdbcType=VARCHAR},
+			#{cache_status ,jdbcType=VARCHAR}
+		)
+	</insert>
+	
+	<select id="list" parameterType="map" resultMap="promodelRM">
+		select * from cvte_promodel
+		where 1=1
+	</select>
+	<select id="getByName" parameterType="map" resultMap="promodelRM">
+		select * from cvte_promodel
+		where model_name = #{model_name}
+	</select>
+	<select id="get" parameterType="string" resultMap="promodelRM">
+		select * from cvte_promodel
+		where model_code=#{id}
+	</select>
+
+	<update id="update" parameterType="com.baixinping.cvtepro.entity.ProModel">
+		update cvte_promodel
+		<set >
+			<if test="id != null" >
+				model_code = #{id,jdbcType=VARCHAR},
+			</if>
+			<if test="model_name != null" >
+				model_name = #{model_name,jdbcType=VARCHAR},
+			</if>
+			<if test="cache_status != null" >
+				cache_status = #{cache_status,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where model_code = #{id,jdbcType=VARCHAR}
+	</update>
+</mapper>
+
+
+
+
+
+
+
+
+

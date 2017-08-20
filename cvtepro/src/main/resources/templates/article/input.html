@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>cvte-系统登录页</title>
+	<link rel="stylesheet" th:href="@{/css/index.css}">
+	<script th:src="@{/js/jquery-1.8.3.js}"></script>
+	<script th:src="@{/js/Calendar.js}"></script>
+	<script type="text/javascript">
+		$(function() {
+			var a = ${articleModel};
+			$("#title").val(a);
+			//$("#content").innertext=${articleModel.content};
+
+			$("#all").click(
+					function() {
+						$("[name=roles]:checkbox").attr("checked",
+								$("#all").attr("checked") == "checked");
+					});
+			$("#reverse").click(function() {
+				$("[name=roles]:checkbox").each(function() {
+					$(this).attr("checked", !$(this).attr("checked"));
+				});
+			});
+		});
+	</script>
+</head>
+<div class="content-right">
+	<div class="content-r-pic_w">
+		<div style="margin:8px auto auto 12px;margin-top:6px">
+			<span class="page_title">文章管理</span>
+		</div>
+	</div>
+	<div class="content-text">
+		<div class="square-order">
+			<form action="articleInsert.action" method="post">
+			<input type="hidden" name="id" th:value="${articleModel.id}" />
+				<div style="border:1px solid #cecece;">
+					<table width="100%" border="0" cellpadding="0" cellspacing="0">
+						<tr bgcolor="#FFFFFF">
+							<td>&nbsp;</td>
+						</tr>
+					</table>
+					<table width="100%" border="0" cellpadding="0" cellspacing="0">
+						<tr bgcolor="#FFFFFF">
+							<td width="18%" height="30" align="center">文章标题</td>
+							<td width="32%">
+								<input id="title"  th:value="${articleModel.title}" name="title" type="text" size="25"/>
+							</td>
+						</tr>
+						<tr bgcolor="#FFFFFF">
+							<td colspan="4">&nbsp;</td>
+						</tr>
+						<tr bgcolor="#FFFFFF">
+							<td align="center">文章内容&nbsp;</td>
+							<td><textarea  id="articleContent" th:text="${articleModel.content}"  name="content" size="25" rows="15" cols="50"></textarea>  </td>
+						</tr>
+					</table>
+				</div>
+				<div class="order-botton">
+					<div style="margin:1px auto auto 1px;">
+						<table width="100%" border="0" cellpadding="0" cellspacing="0">
+							<tr>
+								<td><a href="javascript:document.forms[0].submit()"><img
+										src="images/order_tuo.gif" border="0" /></a></td>
+								<td>&nbsp;</td>
+								<td><a href="#"><img src="images/order_tuo.gif"
+										border="0" /></a></td>
+								<td>&nbsp;</td>
+								<td><a href="#"><img src="images/order_tuo.gif"
+										border="0" /></a></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</form>
+		</div>
+		<!--"square-order"end-->
+	</div>
+	<!--"content-text"end-->
+	<div class="content-bbg">
+		<img src="images/content_bbg.jpg" />
+	</div>
+</div>

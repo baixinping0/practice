@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>cvte-系统登录页</title>
+	<link rel="stylesheet" th:href="@{/css/index.css}">
+	<script th:src="@{/js/jquery-1.8.3.js}"></script>
+	<script type="text/javascript">
+		$(function() {
+			$("#query").click(function() {
+				$("[name='pageNum']").val(1);
+				$("form:first").submit();
+			});
+		});
+	</script>
+</head>
+<div class="content-right">
+	<div class="content-r-pic_w">
+		<div style="margin:8px auto auto 12px;margin-top:6px">
+			<span class="page_title">订单管理</span>
+		</div>
+	</div>
+	<div class="content-text">
+		<form action="emp_list">
+			<div class="square-o-top">
+				<table width="100%" border="0" cellpadding="0" cellspacing="0"
+					style="font-size:14px; font-weight:bold; font-family:"黑体";">
+					 <tr>
+						 <td height="30">单据类型&nbsp;</td>
+						 <td><input type="text" /></td>
+						 <td height="30">客户名称&nbsp;</td>
+						 <td><input type="text" /></td>
+						 <td height="30">销售型号&nbsp;</td>
+						 <td><input type="text" /></td>
+
+						<td width="70"><a href="articleInput.action"> <img
+								src="images/can_b_02.gif" border="0" />
+						</a></td>
+					</tr>
+					<tr>
+						<td height="30">发货方式&nbsp;</td>
+						<td><input type="text" /></td>
+						<td height="30">提货地址&nbsp;</td>
+						<td><input type="text" /></td>
+						<td height="30">出货仓库&nbsp;</td>
+						<td><input type="text" /></td>
+						<td><a id="query"> <img src="images/can_b_01.gif"
+								border="0" />
+						</a></td>
+					</tr> 
+				</table>
+			</div> 
+		</form>
+
+		<!--"square-o-top"end-->
+		<div  style="overflow:scroll; width:800px; height:400px;" class="square-order" >
+			<table width="100%" border="1" cellpadding="0" cellspacing="0">
+				<tr align="center"
+					style="background:url(images/table_bg.gif) repeat-x;">
+					<td width="5%">组织名称</td>
+					<td width="8%">单据类型</td>
+					<td width="5%">客户名称</td>
+					<td width="5%">销售员</td>
+					<td width="5%">出货仓库</td>
+					<td width="12%">提货地址</td>
+					<td width="5%">销售型号</td>
+					<td width="12%">生产批次</td>
+					<td width="3%">数量</td>
+					<td width="5%">发货方式</td>
+					<td width="5%">发货日期</td>
+					<td width="5%">撤单</td>
+					<td width="5%">类型</td>
+					<td width="5%">操作</td>
+				</tr>
+				<div></div>
+					<tr class="odd" th:each="o,iterStat:${logisticsList}"  >
+						<td th:text="${o.organization_name}"></td>
+						<td th:text="${o.from_typeView}"></td>
+						<td th:text="${o.cus_name}"></td>
+						<td th:text="${o.sales_man}"></td>
+						<td th:text="${o.warehouse}"></td>
+						<td th:text="${o.pickup_address}"></td>
+						<td th:text="${o.sales_model}"></td>
+						<td th:text="${o.batch_no}"></td>
+						<td th:text="${o.qty}">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+						<td th:text="${o.delivery_type}"></td>
+						<td th:text="${o.delivery_dateView}"></td>
+						<td th:text="${o.is_revokeView}"></td>
+						<td th:text="${o.do_detail_typeView}"></td>
+						<td><img src="images/icon_3.gif" /> <span
+							style="line-height:12px; text-align:center;">
+							<a th:href="@{logisticsInput.action(id=${o.id})}"
+									 class="xiu">
+									发单
+								</a>
+						</span> <img src="images/icon_04.gif" /> <span
+							style="line-height:12px; text-align:center;"> 
+							
+							<a href="javascript:void(0)" class="xiu">删除</a>
+						</span></td>
+					</tr>
+			</table>
+		</div>
+	</div>
+</div>
+</html>

@@ -1,0 +1,98 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<link href="css/index.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="js/Calendar.js"></script>
+<script type="text/javascript">
+	$(function() {
+		var a = ${articleModel};
+		$("#title").val(a);
+		//$("#content").innertext=${articleModel.content};
+		
+		$("#all").click(
+				function() {
+					$("[name=roles]:checkbox").attr("checked",
+							$("#all").attr("checked") == "checked");
+				});
+		$("#reverse").click(function() {
+			$("[name=roles]:checkbox").each(function() {
+				$(this).attr("checked", !$(this).attr("checked"));
+			});
+		});
+	});
+</script>
+<div class="content-right">
+	<div class="content-r-pic_w">
+		<div style="margin:8px auto auto 12px;margin-top:6px">
+			<span class="page_title">文章管理</span>
+		</div>
+	</div>
+	<div class="content-text">
+		<div class="square-order">
+			<form action="cacheInsert.action" method="post">
+			<input type="hidden" name="id" value="${cacheModel.id}"/>
+				<div style="border:1px solid #cecece;>
+					<table width="100%" border="0" cellpadding="0" cellspacing="0">
+						<tr bgcolor="#FFFFFF">
+							<td>&nbsp;</td>
+						</tr>
+					</table>
+					<table width="100%" border="0" cellpadding="0" cellspacing="0">
+						<tr bgcolor="#FFFFFF">
+							<td width="18%" height="30" align="center">缓存模块</td>
+							<td width="32%">${cacheModel.cache_model}
+							</td>
+						</tr>
+						<tr bgcolor="#FFFFFF">
+							<td colspan="4">&nbsp;</td>
+						</tr>
+						<tr bgcolor="#FFFFFF">
+							<td align="center">url&nbsp;</td>
+							<td>${cacheModel.cache_url}</td>
+						</tr>
+						<tr bgcolor="#FFFFFF">
+							<td colspan="4">&nbsp;</td>
+						</tr>
+						<tr bgcolor="#FFFFFF">
+							<td align="center">是否开启&nbsp;</td>
+							<td>
+								<select name="cache_status" >
+									<c:if test="${cacheModel != null && cacheModel.cache_status == '0'}" >
+										<option  value="0">关闭</option>
+										<option value="1">开启</option>
+									</c:if>
+									<c:if test="${cacheModel == null || cacheModel.cache_status == '1'}">
+										<option value="1">开启</option>
+										<option  value="0">关闭</option>
+									</c:if>
+								</select>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div class="order-botton">
+					<div style="margin:1px auto auto 1px;">
+						<table width="100%" border="0" cellpadding="0" cellspacing="0">
+							<tr>
+								<td><a href="javascript:document.forms[0].submit()"><img
+										src="images/order_tuo.gif" border="0" /></a></td>
+								<td>&nbsp;</td>
+								<td><a href="#"><img src="images/order_tuo.gif"
+										border="0" /></a></td>
+								<td>&nbsp;</td>
+								<td><a href="#"><img src="images/order_tuo.gif"
+										border="0" /></a></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</form>
+		</div>
+		<!--"square-order"end-->
+	</div>
+	<!--"content-text"end-->
+	<div class="content-bbg">
+		<img src="images/content_bbg.jpg" />
+	</div>
+</div>

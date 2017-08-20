@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>cvte-系统登录页</title>
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+    <script th:src="@{/js/jquery-1.8.3.js}"></script>
+
+    <script>
+        $(function() {
+            $("#login_ok").click(function() {
+                $("form:first").submit();
+            });
+        });
+        function MM_swapImage(srcObj,image_src){
+            srcObj.src= image_src;
+        }
+    </script>
+</head>
+<body>
+<div class="container-login">
+    <div class="login-pic">
+        <div class="login-text">
+            <form action="login.action" method="post">
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td width="19%" height="23">用户名：</td>
+                        <td colspan="2">
+                            <input name="user_name" size="10" value="曹100001" type="text"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="23">密&nbsp;&nbsp;码：</td>
+                        <td colspan="2">
+                            <input name="user_pwd" size="10" value="1"  type="text"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="23">&nbsp;</td>
+                        <td colspan="2">
+                            <a href="javascript:void(0)" id="login_ok">
+                                <img src="images/denglu_bg_03.gif"
+                                     name="Image1" width="40"
+                                     height="22" border="0"
+                                     onmouseover="MM_swapImage(this,'images/denglu_h_03.gif')"
+                                     onmouseout="MM_swapImage(this,'images/denglu_bg_03.gif')" /></a>
+                            <a href="#">
+                                <img src="images/giveup_bg_03.gif"
+                                     name="Image2" width="42"
+                                     height="22" border="0"
+                                     onmouseover="MM_swapImage(this,'images/giveup_h_03.gif')"
+                                     onmouseout="MM_swapImage(this,'images/giveup_bg_03.gif')" /></a>
+                        </td>
+                    </tr>
+                </table>
+                <form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

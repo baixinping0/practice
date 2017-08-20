@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>cvte-系统登录页</title>
+	<link rel="stylesheet" th:href="@{/css/index.css}">
+	<script th:src="@{/js/jquery-1.8.3.js}"></script>
+	<script type="text/javascript">
+		$(function() {
+			$("#query").click(function() {
+				$("[name='pageNum']").val(1);
+				$("form:first").submit();
+			});
+		});
+		function showMsg(msg, id) {
+			alert(12);
+			//显示遮罩层
+			top.lock.show();
+			//显示数据区
+			top.$('context-msg').style.display = "block";
+			top.$('context-msg-text').innerHTML = msg;
+			top.$('hid-action').value = "articleDelete.action?id=" + id;
+		}
+	</script>
+</head>
+<div class="content-right">
+	<div class="content-r-pic_w">
+		<div style="margin:8px auto auto 12px;margin-top:6px">
+			<span class="page_title">缓存管理</span>
+		</div>
+	</div>
+	<div class="content-text">
+		<form action="emp_list">
+			<div class="square-o-top">
+				<table width="100%" border="0" cellpadding="0" cellspacing="0"
+					style="font-size:14px; font-weight:bold; font-family:"黑体";">
+					 <tr>
+						<td height="30">缓存名称&nbsp;</td>
+						<td><input type="text" /></td>
+						<td>缓存状态</td>
+						<td><input type="text" /></td>
+						<td width="70"><a href="cacheInput.action"> <img
+								src="images/can_b_02.gif" border="0" />
+						</a></td>
+						<td><a id="query"> <img src="images/can_b_01.gif"
+								border="0" />
+						</a></td>
+					</tr>
+				</table>
+			</div> 
+		<form>
+		<script type="text/javascript">
+			$(function() {
+				$("#query").click(function() {
+					$("form:first").submit();
+				});
+			});
+		</script>
+
+		<!--"square-o-top"end-->
+		<div class="square-order">
+			<table width="100%" border="1" cellpadding="0" cellspacing="0">
+				<tr align="center"
+					style="background:url(images/table_bg.gif) repeat-x;">
+					<td width="30%">模块名称</td>
+					<td width="30%">缓存状态</td>
+					<td width="30%">操作</td>
+				</tr>
+				<!--<c:forEach items="${proModelList}" var="o" varStatus="status">-->
+					<tr th:each="o,iterStat:${proModelList}" class="odd" onmouseover="this.className='highlight'" onmouseout="this.className='odd'" >
+						<td th:text="${o.model_name}"></td>
+						<td th:text="${o.cache_statusView}"></td>
+						<td><img src="images/icon_3.gif" /> <span
+							style="line-height:12px; text-align:center;">
+							<a th:href="@{proModelInput.action(id=${o.id})}" class="xiu">
+									修改
+								</a>
+						</span> <img src="images/icon_04.gif" /> <span
+							style="line-height:12px; text-align:center;"> 
+							
+							<a href="javascript:void(0)" class="xiu" >删除</a>
+						</span></td>
+					</tr>
+				<!--</c:forEach>-->
+			</table>
+			<!--<%@include file="/WEB-INF/jsps/tools/paging.jsp"%>-->
+		</div>
+		</form>
+	</div>
+	<div class="content-bbg"></div>
+</div>

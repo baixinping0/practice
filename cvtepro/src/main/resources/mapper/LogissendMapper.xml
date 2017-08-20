@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.baixinping.cvtepro.dao.LogissendDao">
+	<resultMap type="com.baixinping.cvtepro.entity.LogissendModel" id="logissendRM">
+		
+		<id property="id" column="logissend_code"/>
+		<!--
+		<result property="title" column="title"
+		<result property="content" column="content"/>
+		<result property="created_time" column="created_time"/>
+		<result property="updated_time" column="updated_time"/>
+		<result property="is_del" column="is_del"/>
+		 -->
+	</resultMap>
+	
+	<!-- 查询 -->
+	<select id="list" parameterType="map" resultMap="logissendRM">
+		select * from cvte_logissend
+		where 1=1
+	</select>
+	
+	<select id="getBylogisticsId" parameterType="string" resultMap="logissendRM">
+		select * from cvte_logissend
+		where logistics_code=#{logisticsId}
+	</select>
+	<select id="get" parameterType="string" resultMap="logissendRM">
+		select * from cvte_logissend
+		where logissend_code=#{id}
+	</select>
+	<!-- 新增 -->
+	 <insert id="insert" parameterType="com.baixinping.cvtepro.entity.LogissendModel">
+		insert into cvte_logissend
+		(logissend_code,logistics_code,logissend_status)
+		values
+		(
+			#{id,jdbcType=VARCHAR},
+			#{logistics_code ,jdbcType=VARCHAR},
+			#{logissend_status ,jdbcType=VARCHAR}
+			
+		)
+	</insert>
+	
+	<delete id="deleteById" parameterType="String">
+		delete from cvte_logissend
+		where logissend_code=#{id}
+	</delete>
+	
+	
+	<update id="update" parameterType="com.baixinping.cvtepro.entity.LogissendModel">
+		update cvte_logissend
+	    <set >
+	      <if test="logistics_code != null" >
+	        logistics_code = #{logistics_code,jdbcType=VARCHAR},
+	      </if>
+	      <if test="logissend_status != null" >
+	        logissend_status = #{logissend_status,jdbcType=VARCHAR}
+	      </if>
+	    </set>
+    	where logissend_code = #{id,jdbcType=VARCHAR}
+	</update>
+</mapper>
+
+
+
+
+
+
+
+
+
